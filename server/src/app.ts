@@ -42,18 +42,6 @@ class App {
     
     constructor(controllers: IController[]) {
         this.app = express();
-        // this.listen();
-        // const socketIo = require("socket.io");
-        // const server = socketio(this.app.get('port'));
-        // const io = socketIo(server);
-
-        // io.on("connection", (socket) => {
-        //     console.log("New client connected", socket);
-
-        // });
-        // const io = socketIOClient.connect('http://localhost:10003');
-        // const io = require("socket.io")(3000);
-
         this.connectToTheDatabase();
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
@@ -95,21 +83,12 @@ class App {
     private async connectToTheDatabase() {
         try {
             const connection = await mongoose.connect(`${process.env.MONGO_PATH}/easyway`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-            // const geoData = await getGeoCodingData('Santiago de Cali, CO');
-            // // console.log('geoData is: ', geoData.geometry.location);
-            // const weatherData = await getWeatherData(geoData.geometry.location.lat,geoData.geometry.location.lng);
-            // console.log('weatherData is: ', weatherData.currently.temperature);
         } catch (error) {
             console.log('error when trying to connect to mongose is: ', error);
         }
     }
 
     private initializeSocketIo() {
-        // this.httpServer = new http.Server(this.app);
-        // this.io = require('socket.io')(this.httpServer)
-        // this.io.on("connection", function (socket: any) {
-        //     console.log("a user connected");
-        // });
 
     }
 }
