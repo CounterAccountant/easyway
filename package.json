@@ -10,7 +10,7 @@
         "build:server": "rm -rf server/.env && cp .env server/.env",
         "build:types": "cd types/ && yarn build && cd ../",
         "all": "yarn build:client && yarn build:server && yarn build:types && yarn build && yarn up",
-        "install": "cd types/ && yarn && yarn build && yarn link && cd ../server/ && yarn && yarn link 'wasyway-types' && cd ../client/ && yarn && yarn link 'wasyway-types' && cd .. && yarn all"
+        "install": "cd types/ && yarn && yarn build && yarn link && cd ../server/ && yarn && yarn link 'easyway-types' && cd ../client/ && yarn && yarn link 'easyway-types' && cd .. && yarn all"
     },
     "repository": {
         "type": "git",
