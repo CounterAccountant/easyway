@@ -1,0 +1,74 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "${MONGO_PORT}:27017"
+    environment:
+      MONGO_INITDB_DATABASE: easyway
+  web:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    environment:
+      env_file: .env
+    links:
+      - mongo
+      # - mail
+
+    # volumes:
+    #   - ./init.sh:/init.sh
+    # command: sh init.sh
+    # secrets:
+    #   - id_rsa
+
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    environment:
+      env_file: .env
+      NODE_ENV: development
+    ports:
+      - "${CLIENT_PORT}:80"
+    links:
+      - web
+
+  # mail:
+  #   image: tvial/docker-mailserver:latest
+  #   hostname: ${HOSTNAME}
+  #   domainname: ${DOMAINNAME}
+  #   container_name: ${CONTAINER_NAME}
+  #   ports:
+  #     - "25:25"
+  #     - "143:143"
+  #     - "587:587"
+  #     - "993:993"
+  #   volumes:
+  #     - maildata:/var/mail
+  #     - mailstate:/var/mail-state
+  #     - maillogs:/var/log/mail
+  #     - ./mail/config/:/tmp/docker-mailserver/
+  #     - /etc/letsencrypt/:/etc/letsencrypt/
+  #   env_file:
+  #     - ./mail/.env
+  #     - ./mail/env-mailserver
+  #   cap_add:
+  #     - NET_ADMIN
+  #     - SYS_PTRACE
+  #   restart: always
+
+volumes:
+  logvolume01: {}
+  # maildata:
+  # mailstate:
+  # maillogs:
+# networks:
+#   default:
+#     external:
+#       name: mail
+# secrets:
+#    id_rsa:
+#      file: ~/.ssh/id_rsa

@@ -1,0 +1,25 @@
+{
+    "name": "wasyway",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "up": "docker-compose up",
+        "build": "docker-compose build",
+        "build:client": "rm -rf client/.env && cp .env client/.env && cd client/ && yarn build && cd ../",
+        "build:server": "rm -rf server/.env && cp .env server/.env",
+        "build:types": "cd types/ && yarn build && cd ../",
+        "all": "yarn build:client && yarn build:server && yarn build:types && yarn build && yarn up",
+        "install": "cd types/ && yarn && yarn build && yarn link && cd ../server/ && yarn && yarn link 'wasyway-types' && cd ../client/ && yarn && yarn link 'wasyway-types' && cd .. && yarn all"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://AdiIluz@bitbucket.org/AdiIluz/otzar.git"
+    },
+    "author": "Adi Iluz",
+    "license": "ISC",
+    "homepage": "https://bitbucket.org/AdiIluz/otzar#readme",
+    "dependencies": {
+        "csvtojson": "^2.0.10"
+    }
+}

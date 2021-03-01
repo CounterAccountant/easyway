@@ -1,0 +1,10 @@
+export { default as IController } from './interfaces/controller.interface';
+export { default as IAlert, IConditionPrefix } from './interfaces/alerts.interface';
+export { default as GetAlerts } from './modules/get_alerts/GetAlerts.interface';
+export { default as ILoginRequest } from './modules/login/LoginRequest';
+export { default as ILoginResponse } from './modules/login/LoginResponse';
+export { default as IGetMessagesResponse } from './modules/get_messages/GetMessage';
+export { default as IUser } from './interfaces/user.interface';
+export { default as IMessage } from './interfaces/messages.interface';
+export { default as IPostMessageRequest } from './modules/post_message/PostMessageRequest';
+export { default as IPostMessageResponse } from './modules/post_message/PostMessageResponse';
